@@ -78,6 +78,53 @@ decimal media = somaNotas / numNotas;
 Console.WriteLine($"\nA média das {numNotas} notas é: {media:N2}");
 
 
+
+// Exercicio Novo de LISTAS baseando no modelo de array strings acima
+
+Console.WriteLine("Qual o tamanho de sua Lista?");
+
+int tamanhoLista = int.Parse(Console.ReadLine());
+
+List<string> textosLista = new List<string>();
+
+for (int i = 0; i < tamanhoLista; i++)
+{
+    Console.WriteLine($"Digite o {i+1}º nome: ");
+    textosLista.Add(Console.ReadLine());
+}
+
+Console.WriteLine($"Sua lista tem {textosLista.Count} itens/posições"); // O método Count funciona como Lenght no python
+
+for (int i = 0; i < textosLista.Count; i++) // Este for só funciona após o for acima chegar ao fim
+{
+    Console.WriteLine($"O nome na posição {i} é {textosLista[i]}");
+}
+
+// Exercicio de LISTAS usando FOREACH baseando-se no modelo de lista acima.
+
+Console.WriteLine("Qual o tamanho de sua Lista? (com foreach)");
+
+int sizeListForeach = int.Parse(Console.ReadLine());
+
+List<string> textsListForeach = new List<string>();
+
+for (int i = 0; i < sizeListForeach; i++)
+{
+    Console.WriteLine($"Digite o {i+1}º nome: ");
+    textsListForeach.Add(Console.ReadLine());
+}
+
+Console.WriteLine($"Sua lista tem {textsListForeach.Count} itens/posições"); // O método Count funciona como Lenght no python
+
+int iterador = 0; // Cria o iterador para poder imprimir no console as posições dos indices para cada nome.
+foreach(var item in textsListForeach) // poderia ser "foreach(string item in textsListForeach)
+{
+    Console.WriteLine($"O nome na posição {iterador} é {item}");
+    iterador++;
+}
+
+
+
 // ==============================================================================
 // Exercício - Criar lista e receber nomes, preenchendo a lista até o usuário 
 // digitar "sair". Quando digitar "sair", deve mostrar todos os nomes preenchidos.
