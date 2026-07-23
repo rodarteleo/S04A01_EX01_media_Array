@@ -30,34 +30,95 @@ Console.WriteLine(arrayText[0]);
 //Crie o array e depois preencha-o utilizando uma estrutura de repetição.
 //Após preenchido exiba o array na tela para o usuário
 
+Console.WriteLine("Qual o tamanho do seu array?");
 
+int tamanhoArray = int.Parse(Console.ReadLine());
+
+string[] textos = new string[tamanhoArray];
+
+for (int i = 0; i < tamanhoArray; i++)
+{
+    Console.WriteLine($"Digite o {i+1}º nome: ");
+    textos[i] = Console.ReadLine();
+}
+
+for (int i = 0; i < tamanhoArray; i++)
+{
+    Console.WriteLine($"O nome na posição {i} é {textos[i]}");
+}
+
+/// Crie um programa para cálculo de média que pergunte quantas notas serão calculadas,
+/// obtenha os valores delas, realize o cálculo e exiba a nota média.
+
+Console.WriteLine("===== Cálculo de Média Aritmética =====");
 Console.WriteLine("Quantas notas definirão a média a ser calculada?");
-// 1. Mudamos para 'int' porque a quantidade de notas é um número inteiro
-int quantidadeNotas = int.Parse(Console.ReadLine()); 
 
-// Criamos o array usando o int
-float[] notas = new float[quantidadeNotas];
-float soma = 0; // Criamos uma variável para acumular a soma das notas
+int numNotas = int.Parse(Console.ReadLine());
 
-for (int i = 0; i < quantidadeNotas; i++)
+// Criamos o array para armazenar as notas 
+decimal[] notas = new decimal[numNotas];
+
+// Criamos uma variável para ir acumulando a soma das notas
+decimal somaNotas = 0;
+
+for (int i = 0; i < numNotas; i++)
 {
-    // Usamos (i + 1) apenas na mensagem para exibir "1º nota" em vez de "0º nota"
-    Console.WriteLine($"Digite a {i + 1}ª nota: ");
-    
-    // 2. Aqui convertemos a nota digitada corretamente para float usando float.Parse
-    notas[i] = float.Parse(Console.ReadLine());
-    
-    // Vamos somando a nota atual ao total
-    soma += notas[i];
+    Console.WriteLine($"Digite a {i+1}ª nota: ");
+    notas[i] = decimal.Parse(Console.ReadLine());
+    // Pegamos o valor que o usuário acabou de digitar e somamos ao total
+    somaNotas += notas[i];
+   
 }
 
-Console.WriteLine("\n--- Notas Digitadas ---");
-for (int i = 0; i < quantidadeNotas; i++)
+// O loop acabou! Agora que temos a soma total, calculamos a média fora do loop
+decimal media = somaNotas / numNotas;
+
+// Exibimos o resultado
+// O :N2 no Console.WriteLine serve apenas para formatar o resultado com duas casas decimais na tela.
+Console.WriteLine($"\nA média das {numNotas} notas é: {media:N2}");
+
+
+// ==============================================================================
+// Exercício - Criar lista e receber nomes, preenchendo a lista até o usuário 
+// digitar "sair". Quando digitar "sair", deve mostrar todos os nomes preenchidos.
+// ==============================================================================
+
+// 1. Criamos a nossa lista de strings para guardar os nomes.
+// Como a lista é dinâmica, ela começa vazia e vai crescendo conforme adicionamos itens.
+List<string> listaNomes = new List<string>();
+
+// 2. Criamos uma variável do tipo string chamada 'opcao' que vai controlar o nosso loop.
+// Começamos ela vazia para que o programa entre no loop pela primeira vez.
+string opcao = "";
+
+Console.WriteLine("--- Cadastro de Nomes (Digite 'sair' para encerrar) ---");
+
+// 3. Utilizamos o 'while'. Ele vai rodar ENQUANTO o que o usuário digitou for DIFERENTE de "sair"
+while (opcao.ToLower() != "sair")
 {
-    Console.WriteLine($"A nota na posição {i} é {notas[i]}");
+    Console.WriteLine("Digite um nome ou 'sair':");
+    
+    // Lemos o que foi digitado no console
+    opcao = Console.ReadLine();
+
+    // 4. Verificação importante: Se o usuário digitou "sair", NÃO queremos adicionar a
+    // palavra "sair" na nossa lista de nomes! Por isso usamos este 'if'.
+    if (opcao.ToLower() != "sair")
+    {
+        // Se NÃO for "sair", adicionamos o nome na lista usando o método .Add()
+        listaNomes.Add(opcao);
+        Console.WriteLine($"Nome '{opcao}' adicionado com sucesso!\n");
+    }
 }
 
-// 3. Calculamos a média final dividindo a soma pela quantidade de notas
-float mediaFinal = soma / quantidadeNotas;
+// 5. Após sair do loop (quando o usuário digitar 'sair'), exibimos os resultados.
+Console.WriteLine("\n--- Lista de Nomes Cadastrados ---");
 
-Console.WriteLine($"\nA média final das notas é: {mediaFinal:F2}");
+// Usamos o 'foreach' que você colocou no seu código, que é a forma mais simples 
+// e direta de passar por cada item da nossa lista.
+foreach (string nome in listaNomes)
+{
+    Console.WriteLine("O nome é: " + nome);
+}
+
+Console.WriteLine("\nFim do programa!");
