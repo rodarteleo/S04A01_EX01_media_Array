@@ -123,6 +123,25 @@ foreach(var item in textsListForeach) // poderia ser "foreach(string item in tex
     iterador++;
 }
 
+// Novo Exercício - Mostrar uso de lista:
+
+List<int> sequencia = new List<int>(100);
+
+for (int i = 0; i < 100; i++)
+{
+    sequencia.Add(i);
+}
+
+// testar comandos sugeridos:
+
+int[] meuArrayNumerico = sequencia.ToArray();
+
+List<int> sequencia2 = meuArrayNumerico.ToList();
+
+sequencia2.AddRange(sequencia);
+sequencia.Clear();
+
+Console.WriteLine(sequencia);
 
 
 // ==============================================================================
